@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>05_exam</title>
+    <style>
+        .cc1 {
+            background: #f00;
+        }
+
+        .cc2 {
+            background: #fa0;
+        }
+
+        .cc3 {
+            background: #ff0;
+        }
+
+        .cc4 {
+            background: #00f;
+        }
+
+        .cc5 {
+            background: #0f0;
+        }
+
+        table {
+            border: 2px solid #000;
+        }
+
+        .title_ban {
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>05_exam</h1>
+<script type="text/javascript">
+    var studs = [
+        { name: "원빈", jum: [77, 78, 72], ban: 1, gender: "남" },
+        { name: "투빈", jum: [67, 68, 62], ban: 2, gender: "여" },
+        { name: "현빈", jum: [97, 98, 92], ban: 3, gender: "남" },
+        { name: "장희빈", jum: [57, 58, 52], ban: 1, gender: "남" },
+        { name: "김우빈", jum: [87, 88, 82], ban: 2, gender: "여" },
+        { name: "김우빈", jum: [87, 88, 82], ban: 3, gender: "남" },
+    ];
+
+    // 반, 성별
+
+    for (var i in studs) {
+        console.log(studs[i]);
+        studs[i]["tot"] = 0;
+
+        for (var j in studs[i].jum) {
+            studs[i]["tot"] += studs[i].jum[j];
+        }
+
+        studs[i].avg = studs[i]["tot"] / studs[i].jum.length;
+        rating = "";
+        studs[i].rating = cal_rating(studs[i].avg);
+    }
+
+    for (var i in studs) {
+        rank = 1;
+        for (var j in studs) {
+            if (studs[i].avg < studs[j].avg) {
+                rank++;
+            }
+        }
+        studs[i].rank = rank;
+        console.log(studs[i]);
+    }
+
+    function cal_rating(avg) {
+        var rating = "가가가가가가양미우수수"[
+            Math.floor(studs[i].avg / 10)
+            ];
+        return rating;
+    }
+    // sort
+    // studs.sort(function (a, b) {
+    //     if (a.avg > b.avg) return 1;
+    //     if (a.avg === b.avg) return 0;
+    //     if (a.avg < b.avg) return -1;
+
+    // });
+
+    console.log(studs[0]);
+
+    var ccs = { 수: "cc1", 우: "cc2", 미: "cc3", 양: "cc4", 가: "cc5" };
+
+    function showStds(fun, find) {
+        document.write("<table>");
+        fun(find);
+        document.write("</table >");
+    }
+
+    function ban_select(find_ban) {
+        var title =
+            '<tr><td class="title_ban" colspan="10"><p>' +
+            find_ban +
+            "반" +
+            "</p></td></tr>";
+        var list =
+            "<tr><td>이름</td><td>국어</td><td>영어</td><td>수학</td><td>총점</td><td>평균</td><td>등급</td><td>등수</td><td>반</td><td>성별</td></tr>";
+        document.write(title + list);
+        for (var i in studs) {
+            if (studs[i].ban === find_ban) {
+                writeStd(i);
+            }
+        }
+    }
+    function gender_select(find_gender) {
+        var title =
+            '<tr><td class="title_ban" colspan="10"><p>' +
+            find_gender +
+            "자" +
+            "</p></td></tr>";
+        var list =
+            "<tr><td>이름</td><td>국어</td><td>영어</td><td>수학</td><td>총점</td><td>평균</td><td>등급</td><td>등수</td><td>반</td><td>성별</td></tr>";
+        document.write(title + list);
+        for (var i in studs) {
+            if (studs[i].gender === find_gender) {
+                writeStd(i);
+            }
+        }
+    }
+    function writeStd(num) {
+        var st = studs[num];
+        var cc = ccs[st.rating];
+        var ttt = "<tr class=" + cc + "><td>" + st.name + "</td>";
+
+        for (var j in st.jum) {
+            ttt += "<td>" + st.jum[j] + "</td>";
+        }
+
+        ttt += "<td>" + st.tot + "</td><td>" + st.avg + "</td>";
+        ttt += "<td>" + st.rating + "</td>";
+        ttt += "<td>" + st.rank + "</td>";
+        ttt += "<td>" + st.ban + "</td>";
+        ttt += "<td>" + st.gender + "</td></tr>";
+
+        document.write(ttt);
+    }
+
+    showStds(ban_select, 1);
+    showStds(ban_select, 3);
+    showStds(gender_select, "남");
+    showStds(gender_select, "여");
+</script>
+</body>
+</html>

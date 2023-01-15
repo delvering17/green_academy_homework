@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>08_reactForm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            width: 600px;
+            margin: 0 auto;
+
+        }
+
+        fieldset {
+            width: 500px;
+            height: 60px;
+            margin: 10px;
+            padding: 10px;
+            background: #ccc;
+        }
+
+        legend {
+            width: 70px;
+            height: 30px;
+            line-height: 30px;
+            background: rgba(255, 0, 0, 0.3);
+
+            padding-left: 30px;
+            box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        input,
+        label {
+            height: 30px;
+            line-height: 30px;
+
+        }
+
+        input[type=text],
+        input[type=password] {
+
+            border-width: 0px;
+            border-radius: 15px;
+        }
+
+        input[type=radio],
+        input[type=checkbox] {
+            width: 30px;
+
+        }
+
+        label {
+
+            margin-right: 50px;
+        }
+
+        input[type=submit],
+        input[type=reset],
+        input[type=button],
+        input[type=file] {
+            width: 90px;
+            border-radius: 15px;
+            border-width: 0px;
+            box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type=submit] {
+            background: #fa0;
+        }
+
+        input[type=reset] {
+            background: #0ff;
+        }
+
+        input[type=button] {
+            background: #f0f;
+        }
+
+        input[type=text]:focus {
+            background: #f0f;
+        }
+
+        input[type=submit]:hover,
+        input[type=reset]:hover,
+        input[type=button]:hover {
+            background: #f00;
+        }
+
+        input[type=text]:disabled {
+            background: #000;
+        }
+
+        input[type=checkbox] {
+
+            display: none;
+        }
+
+        input[type=checkbox]+label>div {
+            background-image: url(../fff/class_img/08_reactForm/off.png);
+            background-size: 30px 30px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+
+        }
+
+        input[type=checkbox]:checked+label>div {
+            background-image: url(../fff/class_img/08_reactForm/on.png);
+        }
+
+
+        #label_jickjub>div {
+            background-image: url(../fff/class_img/08_reactForm/off.png);
+            background-size: 30px 30px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+        }
+
+        input[type=checkbox]:checked~#label_jickjub>div {
+            background-image: url(../fff/class_img/08_reactForm/on.png);
+        }
+
+        input[id="text_jickjub"] {
+            display: none;
+        }
+
+        #jickjub:checked+#emailselect {
+            display: none;
+        }
+
+        #jickjub:checked~#text_jickjub {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>08_reactForm</h1>
+<form action="">
+    <fieldset>
+        <legend>id</legend>
+        <label for=""><input type="text" placeholder="id를 입력하세요" disabled /></label>
+        <input type="button" value="중복확인" />
+    </fieldset>
+    <fieldset>
+        <legend>암호</legend>
+        <label><input type="password" /></label>
+    </fieldset>
+    <fieldset>
+        <legend>이름</legend>
+        <label><input type="text" /></label>
+    </fieldset>
+    <fieldset>
+        <legend>성별</legend>
+        <label><input type="radio" name="gender" value="m" />남</label>
+        <label><input type="radio" name="gender" value="f" />여</label>
+        <label><input type="radio" name="gender" value="it" />it인</label>
+    </fieldset>
+    <fieldset>
+        <legend>취미</legend>
+        <input type="checkbox" name="hobby" value="project" id="project" />
+        <label for="project">
+            <div></div>프로젝트
+        </label>
+        <input type="checkbox" name="hobby" value="algorithm" id="algorithm" />
+        <label for="algorithm">
+            <div></div>알고리즘
+        </label>
+        <input type="checkbox" name="hobby" value="architecture" id="architecture" />
+        <label for="architecture">
+            <div></div>아키텍처
+        </label>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>이메일</legend>
+        <label><input type="text" />@
+            <input type="checkbox" value="jickjub" id="jickjub">
+
+            <select id="emailselect">
+                <option value="naver.com">네이버</option>
+                <option value="daum.net">다음</option>
+                <option value="gmail.com">구글</option>
+            </select>
+            <input type="text" id="text_jickjub" />
+
+
+            <label for="jickjub" id="label_jickjub">
+                <div></div>직접입력
+            </label>
+
+
+        </label>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>파일</legend>
+        <label><input type="file" /></label>
+    </fieldset>
+    <fieldset>
+        <input type="submit" value="회원가입" />
+        <input type="reset" value="초기화" />
+        <input type="button" value="뒤로" />
+    </fieldset>
+
+
+</form>
+
+
+</body>
+
+</html>a

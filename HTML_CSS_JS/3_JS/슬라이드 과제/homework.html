@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>0715_07_banner_exercise</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            width: 500px;
+            height: 400px;
+            background: #ff0;
+            border: 1px solid #000;
+            border-radius: 10px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #wrapper > div {
+            width: 500px;
+            height: 400px;
+            position: relative;
+        }
+
+        img {
+            width: 500px;
+            height: 400px;
+            display: block;
+            float: left;
+        }
+
+        .select-img {
+            width: 500px;
+            height: 100px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .select-img > img {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            clear: both;
+        }
+
+        .direction {
+            width: 500px;
+            height: 200px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .direction > input {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script type="text/javascript" src="../ggg/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="../ggg/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var timer;
+            var imgArr;
+            var cnt = 1;
+            var direction = -1;
+            var img_left = -500;
+            slide();
+
+            function slide() {
+                imgArr = [
+                    "../fff/myPracticeImg/0715_07_banner_exercise_img/image1.jpeg",
+                    "../fff/myPracticeImg/0715_07_banner_exercise_img/image2.jpeg",
+                    "../fff/myPracticeImg/0715_07_banner_exercise_img/image3.jpeg",
+                    "../fff/myPracticeImg/0715_07_banner_exercise_img/image4.jpeg",
+                ];
+
+                // 이미지
+                var img_obj_first = document.createElement("img");
+                img_obj_first.src = imgArr[imgArr.length - 1];
+                $("#wrapper > div").append(img_obj_first);
+
+                for (var i = 0; i < imgArr.length; i++) {
+                    var img_obj = document.createElement("img");
+                    img_obj.src = imgArr[i];
+                    $("#wrapper > div").append(img_obj);
+                }
+
+                var img_obj_last = document.createElement("img");
+                img_obj_last.src = imgArr[0];
+                $("#wrapper > div").append(img_obj_last);
+
+                for (var i = 0; i < imgArr.length; i++) {
+                    var img_input_obj = document.createElement("img");
+                    img_input_obj.src = imgArr[i];
+                    $(".select-img").append(img_input_obj);
+                }
+                console.log($("#wrapper > div"));
+
+                $("#wrapper > div").css({
+                    width: 500 * (imgArr.length + 2) + "px",
+                    left: -500 + "px",
+                });
+                $(".select-img").css({
+                    width: 100 * (imgArr.length + 1) + "px",
+                });
+
+                // 슬라이드 시작
+                timer = setInterval(goSlide, 2000);
+
+                // 올리고 있으면 애니메이션 멈춤
+                $("#wrapper > div > img").on("mouseover", function () {
+                    console.log("멈춤: " + cnt);
+
+                    clearInterval(timer);
+                });
+                $("#wrapper > div> img").on("mouseout", function () {
+                    console.log("다시시작: " + cnt);
+
+                    timer = setInterval(goSlide, 2000);
+                });
+                // 이미지 버튼 클릭으로 이동
+                $(".select-img > img").each(function (kk) {
+                    $(
+                        ".select-img > img:nth-of-type(" + (kk + 1) + ")"
+                    ).click(function () {
+                        clearInterval(timer);
+                        if (direction == -1) {
+                            cnt = kk + 1;
+                            img_left = -500 * cnt;
+                        } else if (direction == 1) {
+                            cnt = imgArr.length + 1 - kk - 1;
+                            img_left = -500 * (imgArr.length + 1 - cnt);
+                        }
+                        console.log("이미지 클릭: " + cnt);
+
+                        $("#wrapper > div")
+                            .stop(false, true)
+                            .animate(
+                                {
+                                    left: "" + img_left + "px",
+                                },
+                                1000,
+                                "easeOutBounce",
+                                setTimeout(start, 1500)
+                            );
+                    });
+                });
+
+                $("#pre-img").click(function () {
+                    clearInterval(timer);
+                    if (direction == -1) {
+                        cnt--;
+                        img_left += 500;
+                    } else if (direction == 1) {
+                        cnt++;
+                        img_left -= 500;
+                    }
+                    $("#wrapper > div")
+                        .stop(false, true)
+                        .animate(
+                            {
+                                left: "" + img_left + "px",
+                            },
+                            1000,
+                            "easeOutBounce",
+                            setTimeout(start, 1500)
+                        );
+                });
+                $("#next-img").click(function () {
+                    clearInterval(timer);
+                    if (direction == -1) {
+                        cnt++;
+                        img_left -= 500;
+                    } else if (direction == 1) {
+                        cnt--;
+                        img_left += 500;
+                    }
+                    $("#wrapper > div")
+                        .stop(false, true)
+                        .animate(
+                            {
+                                left: "" + img_left + "px",
+                            },
+                            1000,
+                            "easeOutBounce",
+                            setTimeout(start, 1500)
+                        );
+                });
+
+                function start() {
+                    timer = setInterval(goSlide, 2000);
+                }
+                function goSlide() {
+                    console.log("goslide:" + cnt);
+
+                    img_left += direction * 500;
+
+                    $("#wrapper > div").animate(
+                        {
+                            left: "" + img_left + "px",
+                        },
+                        1000,
+                        "easeOutBounce",
+                        function () {
+                            cnt++;
+                            console.log("animate:" + cnt);
+                            console.log(cnt);
+                            if (cnt == imgArr.length + 1) {
+                                cnt = 1;
+                                if (direction === -1) {
+                                    img_left = -500;
+                                    $("#wrapper > div").css({
+                                        left: img_left,
+                                    });
+                                } else if (direction === 1) {
+                                    img_left = -500 * imgArr.length;
+                                    $("#wrapper > div").css({
+                                        left: img_left,
+                                    });
+                                }
+                            }
+                        }
+                    );
+                }
+            }
+            // 슬라이드 방향 전환
+            $(".direction > input:nth-of-type(1)").click(function () {
+                console.log("stop:" + cnt);
+                $("#wrapper > div").stop(false, true);
+                if (direction === 1) {
+                } else {
+                    direction = 1;
+                    cnt = imgArr.length - cnt + 1;
+                }
+            });
+            $(".direction > input:nth-of-type(4)").click(function () {
+                console.log("stop:" + cnt);
+                $("#wrapper > div").stop(false, true);
+                if (direction === -1) {
+                } else {
+                    cnt = imgArr.length - cnt + 1;
+                    direction = -1;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>0715_07_banner_exercise</h1>
+
+<div id="wrapper">
+    <div></div>
+    <!-- <img
+            src="../fff/myPracticeImg/0715_07_banner_exercise_img/image1.jpeg"
+        /> -->
+</div>
+
+<div class="select-img"></div>
+<div class="direction">
+    <input type="button" value="왼쪽" id="direction-left" />
+    <input type="button" value="<-" id="pre-img" />
+    <input type="button" value="->" id="next-img" />
+    <input type="button" value="오른쪽" id="direction-right" />
+</div>
+</body>
+</html>

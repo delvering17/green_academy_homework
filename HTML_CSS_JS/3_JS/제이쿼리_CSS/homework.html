@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            width: 700px;
+            height: 360px;
+            float: left;
+            border: 2px solid #000;
+        }
+
+        .balloon {
+            width: 170px;
+            height: 180px;
+            background-image: url(../fff/myPracticeImg/0714_03_event_exercise_img/01.png);
+            float: left;
+        }
+    </style>
+    <script type="text/javascript" src="../ggg/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#balloon1").on("mousedown", function () {
+                $(this).css({
+                    "background-image":
+                        "url(../fff/myPracticeImg/0714_03_event_exercise_img/05.png)",
+                    "background-color": "#fa0",
+                });
+            });
+            $("#balloon2").on("mouseover", function () {
+                $(this).css({
+                    "background-image":
+                        "url(../fff/myPracticeImg/0714_03_event_exercise_img/06.png)",
+                    "box-shadow": "5px 5px 5px #000",
+                });
+            });
+            $("#balloon3").on("mouseout", function () {
+                $(this).css({
+                    "background-image":
+                        "url(../fff/myPracticeImg/0714_03_event_exercise_img/07.png)",
+                    opacity: "0.5",
+                });
+            });
+            $("#balloon4").on("mouseup", function () {
+                $(this).css({
+                    "background-image":
+                        "url(../fff/myPracticeImg/0714_03_event_exercise_img/08.png)",
+                    transform: "rotate(90deg)",
+                });
+            });
+
+            $("#balloon5").css({
+                "background-image":
+                    "url(../fff/myPracticeImg/0714_03_event_exercise_img/05.png)",
+                "background-color": "#fa0",
+            });
+
+            $("#balloon6").css({
+                "background-image":
+                    "url(../fff/myPracticeImg/0714_03_event_exercise_img/06.png)",
+            });
+            $("#balloon7").css({
+                "background-image":
+                    "url(../fff/myPracticeImg/0714_03_event_exercise_img/07.png)",
+                opacity: "0.5",
+                transform: "rotate(0deg)",
+            });
+            $("#balloon8").css({
+                "background-image":
+                    "url(../fff/myPracticeImg/0714_03_event_exercise_img/08.png)",
+                transform: "rotate(90deg)",
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>풍선 클릭클릭</h1>
+<div class="wrapper">
+    <div class="balloon" id="balloon1"></div>
+    <div class="balloon" id="balloon2"></div>
+    <div class="balloon" id="balloon3"></div>
+    <div class="balloon" id="balloon4"></div>
+    <div class="balloon" id="balloon5"></div>
+    <div class="balloon" id="balloon6"></div>
+    <div class="balloon" id="balloon7"></div>
+    <div class="balloon" id="balloon8"></div>
+</div>
+</body>
+</html>

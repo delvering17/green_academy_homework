@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .main {
+            width: 1000px;
+            height: 100%;
+        }
+
+        .main-top {
+            width: 1000px;
+            height: 500px;
+            display: flex;
+        }
+
+        .main-top-left {
+            width: 75%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        #main-top-left-backimg {
+            position: absolute;
+            z-index: -1;
+            /*안하고*/
+        }
+
+        #main-top-left-banner {
+            width: 192px;
+            height: 192px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .main-top-right {
+            width: 25%;
+            height: 100%;
+            display: block;
+            /*여기서 왜 flex를 걸면 옆으로 넘어가는지*/
+            background: #ff0;
+        }
+
+        .main-top-right>div[class="banner"] {
+
+            width: 100%;
+            height: 50%;
+
+            padding: 0px;
+
+        }
+
+        .main-bottom {
+            width: 1000px;
+            height: 500px;
+            display: flex;
+        }
+
+        .main-bottom-left {
+            width: 75%;
+            height: 100%;
+            display: flex;
+            background: #ff0;
+        }
+
+        .main-bottom-left-bannerlist {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .main-bottom-left-bannerlist-top {
+            width: 100%;
+            height: 50%;
+            display: flex;
+        }
+
+        .main-bottom-left-bannerlist-bottom {
+            width: 100%;
+            height: 50%;
+            display: flex;
+        }
+
+        .main-bottom-left div[class~=img] {
+            padding: 0px;
+        }
+
+        #banner1,
+        #banner3,
+        #banner5 {
+            background: rgb(171, 38, 38);
+            color: aliceblue;
+        }
+
+        #banner2,
+        #banner4 {
+            background: #fff;
+            color: black;
+        }
+
+        #banner2>.banner_title,
+        #banner4>.banner_title {
+            color: rgb(171, 38, 38);
+
+        }
+
+        .main-bottom-right {
+            width: 25%;
+            height: 100%;
+
+        }
+
+        .main-bottom-right>img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        li {
+            list-style: none;
+        }
+
+        .banner {
+            padding: 30px;
+            width: 190px;
+            height: 190px;
+        }
+
+
+        /* text */
+
+        .banner_title {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .banner_contents {
+            font-size: 15px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="main">
+
+    <div class="main-top">
+
+        <div class="main-top-left">
+            <img id="main-top-left-backimg" src="../fff/myPracticeImg/0707_showpingmall_exercise_img/0320-1.jpg">
+            <div class="banner" id="main-top-left-banner">
+                <div class="banner_title">
+                    GLOBAL BUSINESS
+                </div>
+                <div class="banner_contents">
+                    라이프 스타일을 선도하는 <br />
+                    세계 최고의 미디어 쇼핑 리더
+                </div>
+            </div>
+        </div>
+        <div class="main-top-right">
+            <div class="banner" id="main-top-right-top-banner">
+                <img src="../fff/myPracticeImg/0707_showpingmall_exercise_img/0320-2.jpg">
+            </div>
+            <div class="banner" id="main-top-right-bottom-banner">
+                <img src="../fff/myPracticeImg/0707_showpingmall_exercise_img/0320-3.jpg">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main-bottom">
+        <div class="main-bottom-left">
+            <ul class="main-bottom-left-bannerlist">
+
+                <div class="main-bottom-left-bannerlist-top">
+                    <li>
+                        <div class="banner" id="banner1">
+                            <div class="banner_title">
+                                CSV
+                            </div>
+                            <div class="banner_contents">
+                                상생 이념을 통해 함께 성장하고 <br />
+                                사회에 공헌하는 CSV 프로그램과
+                                활동 소식을 안내합니다
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner" id="banner2">
+                            <div class="banner_title">
+                                입점 안내
+                            </div>
+                            <div class="banner_contents">
+                                고객에게 늘 새롭고 Trendy한 제안을 하는 CJ O Shopping!
+                            </div>

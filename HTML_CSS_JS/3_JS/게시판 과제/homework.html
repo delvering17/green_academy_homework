@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>0718_09_board_exercise</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #box {
+            background: #ff0;
+            border: 1px solid #000;
+            margin: 10px;
+        }
+
+        #box > div {
+            margin: 10px;
+            padding: 10px;
+            border-bottom: 1px dotted #000;
+            display: flex;
+            position: relative;
+        }
+
+        .remove-btn {
+            position: absolute;
+            right: 0;
+        }
+    </style>
+    <script type="text/javascript" src="../ggg/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="../ggg/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var cnt = 1;
+            $("#btn-add").click(function () {
+                var userText = $("#user-text")[0].value;
+                var textObj = $("<div></div>");
+                textObj.attr("id", cnt);
+                textObj.html(userText);
+                var removeBtn = $('<input type="button" value="제거" />');
+                removeBtn.addClass("remove-btn");
+                removeBtn.on("click", function () {
+                    $(this).parent().remove();
+                });
+                textObj.append(removeBtn);
+                $("#box").append(textObj);
+
+                $("#user-text")[0].value = "";
+                cnt++;
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>0718_09_board_exercise</h1>
+<input type="text" id="user-text" />
+<input type="button" id="btn-add" value="추가" />
+
+<div id="box"></div>
+</body>
+</html>
